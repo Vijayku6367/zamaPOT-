@@ -3,7 +3,11 @@
 import { useAccount } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
 
-export default function WalletButton() {
+type WalletConnectProps = {
+  onConnect?: (address: string) => void;
+};
+
+export default function WalletConnect({ onConnect }: WalletConnectProps) {
   const { open } = useWeb3Modal();
   const { address } = useAccount();
 
