@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 
 // Replace with your deployed contract address
-const CONTRACT_ADDRESS = "0x7F756eA338dE78078a88e6D174bBE18916a5c2dE0";
+const CONTRACT_ADDRESS = "0x67009a1bABBF0bc56F56870C7c1f7295c15a2A2d";
 
 // Enhanced ABI for the updated contract
 const CONTRACT_ABI = [
