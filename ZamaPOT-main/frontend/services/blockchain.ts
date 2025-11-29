@@ -384,6 +384,13 @@ export class BlockchainService {
   }
 
   /**
+   * Get Etherscan URL for token
+   */
+  getEtherscanTokenUrl(tokenId: number): string {
+    return `https://sepolia.etherscan.io/token/${CONTRACT_ADDRESS}?a=${tokenId}`;
+  }
+
+  /**
    * Check if wallet is connected
    */
   isWalletConnected(): boolean {
