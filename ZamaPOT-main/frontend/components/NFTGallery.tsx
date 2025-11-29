@@ -237,7 +237,10 @@ export default function NFTGallery({ address }: { address: string }) {
                   borderRadius: '8px',
                   cursor: 'pointer'
                 }}
-                onClick={() => window.open(`https://sepolia.etherscan.io/token/${CONTRACT_ADDRESS}?a=${selectedNft.tokenId}`, '_blank')}
+                onClick={() => {
+  const addr = blockchainService.getContractAddress();
+  window.open(`https://sepolia.etherscan.io/token/${addr}?a=${selectedNft.tokenId}`, '_blank');
+}}
               >
                 🔍 View on Explorer
               </button>
