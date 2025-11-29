@@ -43,6 +43,17 @@ export default function NFTGallery({ address }: { address: string }) {
     }
   };
 
+  const handleViewOnExplorer = async (tokenId: number) => {
+    try {
+      const addr = await blockchainService.getContract();
+      window.open(`https://sepolia.etherscan.io/token/${addr}?a=${tokenId}`, '_blank');
+    } catch (error) {
+      console.error('Error getting contract address:', error);
+      // Fallback to a default address or show error
+      window.open(`https://sepolia.etherscan.io/`, '_blank');
+    }
+  };
+
   if (loading) {
     return (
       <div style={{ textAlign: 'center', padding: '40px' }}>
@@ -145,10 +156,10 @@ export default function NFTGallery({ address }: { address: string }) {
                   marginTop: '15px',
                   fontSize: '14px'
                 }}
-                       onClick={() => {
-  const addr = blockchainService.getContractAddress();
-  window.open(`https://sepolia.etherscan.io/token/${addr}?a=${selectedNft.tokenId}`, '_blank');
-}}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleViewOnExplorer(nft.tokenId);
+                }}
               >
                 🔍 View on Explorer
               </button>
@@ -237,10 +248,7 @@ export default function NFTGallery({ address }: { address: string }) {
                   borderRadius: '8px',
                   cursor: 'pointer'
                 }}
-                onClick={() => {
-  const addr = blockchainService.getContractAddress();
-  window.open(`https://sepolia.etherscan.io/token/${addr}?a=${selectedNft.tokenId}`, '_blank');
-}}
+                onClick={() => handleViewOnExplorer(selectedNft.tokenId)}
               >
                 🔍 View on Explorer
               </button>
@@ -264,4 +272,4 @@ export default function NFTGallery({ address }: { address: string }) {
       )}
     </div>
   );
-}
+                    }
