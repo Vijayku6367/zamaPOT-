@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { blockchainService } from '../services/blockchain';
-
+import { blockchainService } from "../services/blockchain";
 interface NFTData {
   tokenId: number;
   metadata: any;
@@ -147,9 +146,10 @@ export default function NFTGallery({ address }: { address: string }) {
                   fontSize: '14px'
                 }}
                 onClick={(e) => {
-                  e.stopPropagation();
-                  window.open(`https://sepolia.etherscan.io/token/${CONTRACT_ADDRESS}?a=${nft.tokenId}`, '_blank');
-                }}
+  e.stopPropagation();
+  const addr = blockchainService.getContractAddress();
+  window.open(`https://sepolia.etherscan.io/token/${addr}?a=${nft.tokenId}`, '_blank');
+}}
               >
                 🔍 View on Explorer
               </button>
