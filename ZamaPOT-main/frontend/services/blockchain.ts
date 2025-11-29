@@ -377,6 +377,13 @@ export class BlockchainService {
   }
 
   /**
+   * Get contract address
+   */
+  getContractAddress(): string {
+    return CONTRACT_ADDRESS;
+  }
+
+  /**
    * Check if wallet is connected
    */
   isWalletConnected(): boolean {
