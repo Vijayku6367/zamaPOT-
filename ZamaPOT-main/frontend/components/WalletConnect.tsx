@@ -2,6 +2,7 @@
 
 import { useAccount } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
+import { useEffect } from "react";
 
 type WalletConnectProps = {
   onConnect?: (address: string) => void;
@@ -9,7 +10,14 @@ type WalletConnectProps = {
 
 export default function WalletConnect({ onConnect }: WalletConnectProps) {
   const { open } = useWeb3Modal();
-  const { address } = useAccount();
+  const { address, isConnected } = useAccount();
+
+  // Call onConnect automatically when connected
+  useEffect(() => {
+    if (isConnected && address && onConnect) {
+      onConnect(address);
+    }
+  }, [isConnected, address, onConnect]);
 
   return (
     <button
