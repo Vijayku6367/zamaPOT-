@@ -145,10 +145,9 @@ export default function NFTGallery({ address }: { address: string }) {
                   marginTop: '15px',
                   fontSize: '14px'
                 }}
-                onClick={(e) => {
-  e.stopPropagation();
+                       onClick={() => {
   const addr = blockchainService.getContractAddress();
-  window.open(`https://sepolia.etherscan.io/token/${addr}?a=${nft.tokenId}`, '_blank');
+  window.open(`https://sepolia.etherscan.io/token/${addr}?a=${selectedNft.tokenId}`, '_blank');
 }}
               >
                 🔍 View on Explorer
