@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { MobileFHEEncryptor } from "../../utils/encryption";
 import { blockchainService } from "../../services/blockchain";
-import WalletConnect from "./WalletConnect";
+import WalletConnect from "../../components/WalletConnect";
 
 interface DynamicQuestion {
   question_id: string;
