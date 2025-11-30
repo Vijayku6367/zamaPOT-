@@ -9,7 +9,6 @@ export class MobileFHEEncryptor {
   }
 
   static encryptAnswer(answer: number): string {
-    // Simulate FHE encryption for mobile
     const salt = this.generateRandomHex(16);
     const encrypted = `enc_${answer}_${salt}`;
     console.log(`🔐 Encrypted answer ${answer} -> ${encrypted}`);
