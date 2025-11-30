@@ -1,6 +1,5 @@
 import { ethers } from 'ethers';
 
-// New contract address
 const CONTRACT_ADDRESS = "0x67009a1bABBF0bc56F56870C7c1f7295c15a2A2d";
 
 const CONTRACT_ABI = [
@@ -14,7 +13,6 @@ export const mintNFTCertificate = async (skill, score) => {
       throw new Error("Please install MetaMask");
     }
 
-    // Network check
     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
     if (chainId !== '0xaa36a7') {
       await window.ethereum.request({
@@ -29,18 +27,17 @@ export const mintNFTCertificate = async (skill, score) => {
     
     const mintFee = await contract.MINT_FEE();
     
-    // FIX: Proper bytes32 format - exactly 32 bytes
-    const encryptedProof = "0x" + "0".repeat(64); // 32 bytes of zeros
+    const encryptedProof = "0x" + "0".repeat(64);
     
     const tx = await contract.mintTalentBadge(
-      skill,                    // string
-      encryptedProof,           // bytes32 (fixed)
-      Math.min(Math.floor(score / 25), 4), // uint8 (0-4)
-      `cert_${Date.now()}`,     // string
-      0,                        // uint8 cheating likelihood
-      false,                    // bool behavior flagged
-      Math.floor(Date.now() / 1000), // uint256 timestamp
-      Math.floor(Date.now() / 1000) + 31536000, // uint256 expiry
+      skill,
+      encryptedProof,
+      Math.min(Math.floor(score / 25), 4),
+      `cert_${Date.now()}`,
+      0,
+      false,
+      Math.floor(Date.now() / 1000),
+      Math.floor(Date.now() / 1000) + 31536000,
       { value: mintFee }
     );
     
@@ -78,7 +75,6 @@ export const getMintFee = async () => {
   }
 };
 
-// Test contract connection
 export const testContractConnection = async () => {
   try {
     if (!window.ethereum) return { connected: false, error: "MetaMask not installed" };
