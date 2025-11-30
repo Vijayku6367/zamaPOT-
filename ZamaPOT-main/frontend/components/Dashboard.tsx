@@ -39,7 +39,6 @@ export default function Dashboard({ address }: { address: string }) {
       const validNfts = nftData.filter(Boolean);
       setNfts(validNfts);
 
-      // Calculate stats
       const skillDistribution: { [key: string]: number } = {};
       let totalLevel = 0;
 
@@ -55,7 +54,7 @@ export default function Dashboard({ address }: { address: string }) {
         totalNFTs: validNfts.length,
         skillDistribution,
         averageLevel: validNfts.length > 0 ? totalLevel / validNfts.length : 0,
-        totalEarned: validNfts.length * 0.001 // Mock earning calculation
+        totalEarned: validNfts.length * 0.001
       });
 
     } catch (error) {
@@ -81,7 +80,6 @@ export default function Dashboard({ address }: { address: string }) {
         <p style={{ color: 'rgba(255,255,255,0.8)' }}>Your private skill verification dashboard</p>
       </div>
 
-      {/* Stats Grid */}
       <div style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
@@ -131,7 +129,6 @@ export default function Dashboard({ address }: { address: string }) {
         </div>
       </div>
 
-      {/* Skill Distribution */}
       {stats && Object.keys(stats.skillDistribution).length > 0 && (
         <div style={{
           background: 'white',
@@ -171,7 +168,6 @@ export default function Dashboard({ address }: { address: string }) {
         </div>
       )}
 
-      {/* Recent NFTs */}
       <div style={{
         background: 'white',
         borderRadius: '15px',
