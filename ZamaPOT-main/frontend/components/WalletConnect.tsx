@@ -12,7 +12,6 @@ export default function WalletConnect({ onConnect }: WalletConnectProps) {
   const { open } = useWeb3Modal();
   const { address, isConnected } = useAccount();
 
-  // Call onConnect automatically when connected
   useEffect(() => {
     if (isConnected && address && onConnect) {
       onConnect(address);
