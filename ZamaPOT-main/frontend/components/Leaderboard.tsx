@@ -13,7 +13,6 @@ export default function Leaderboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Mock data - in real app, this would come from your backend
     const mockLeaderboard: LeaderboardEntry[] = [
       { address: "0x742...d35a", totalSkills: 12, averageLevel: 4.2, totalValue: 0.012 },
       { address: "0x8f3...b92c", totalSkills: 8, averageLevel: 3.8, totalValue: 0.008 },
