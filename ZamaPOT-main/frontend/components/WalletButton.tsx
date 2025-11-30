@@ -1,4 +1,3 @@
-// components/WalletButton.tsx
 "use client";
 import { useEffect, useState } from "react";
 
@@ -13,11 +12,9 @@ export default function WalletButton() {
   const [connecting, setConnecting] = useState(false);
 
   useEffect(() => {
-    // load cached address
     const cached = localStorage.getItem("connectedAddress");
     if (cached) setAddress(cached);
 
-    // listen for account changes
     if (typeof window !== "undefined" && window.ethereum) {
       window.ethereum.on?.("accountsChanged", (accounts: string[]) => {
         if (accounts && accounts.length) {
@@ -29,8 +26,6 @@ export default function WalletButton() {
         }
       });
       window.ethereum.on?.("chainChanged", () => {
-        // optional: refresh to let UI react to chain change
-        // window.location.reload();
       });
     }
   }, []);
@@ -38,7 +33,6 @@ export default function WalletButton() {
   const connect = async () => {
     try {
       if (!window.ethereum) {
-        // deep link to MetaMask mobile if not installed
         const want = confirm("MetaMask not detected. Open MetaMask site to install?");
         if (want) window.open("https://metamask.io/download/", "_blank");
         return;
@@ -61,7 +55,6 @@ export default function WalletButton() {
   const disconnect = () => {
     setAddress(null);
     localStorage.removeItem("connectedAddress");
-    // Note: cannot programmatically “disconnect” injected wallets; we clear local state only.
   };
 
   return (
