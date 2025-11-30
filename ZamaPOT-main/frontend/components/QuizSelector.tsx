@@ -107,7 +107,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
       setAvailableQuizzes(quizzes);
     } catch (error) {
       console.error('Failed to fetch quizzes:', error);
-      // Fallback to all quizzes
       setAvailableQuizzes(Object.keys(quizDetails));
     } finally {
       setLoading(false);
@@ -115,7 +114,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
   };
 
   const loadQuizStats = () => {
-    // Mock stats - in real app, this would come from your backend
     const mockStats: { [key: string]: QuizStats } = {
       programming: { totalAttempts: 1247, averageScore: 72, completionRate: 85 },
       math: { totalAttempts: 892, averageScore: 68, completionRate: 78 },
@@ -161,7 +159,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
 
   return (
     <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '20px' }}>
-      {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '40px' }}>
         <h1 style={{ color: 'white', marginBottom: '10px', fontSize: '2.5rem' }}>🎯 Choose Your Talent Assessment</h1>
         <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.1rem' }}>
@@ -169,7 +166,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
         </p>
       </div>
 
-      {/* Search and Filter Section */}
       <div style={{ 
         background: 'rgba(255,255,255,0.1)', 
         borderRadius: '15px', 
@@ -216,7 +212,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
           </div>
         </div>
 
-        {/* Category Filters */}
         <div>
           <h3 style={{ color: 'white', marginBottom: '15px', fontSize: '1rem' }}>Filter by Category:</h3>
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
@@ -253,7 +248,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
         </div>
       </div>
 
-      {/* Quizzes Grid */}
       <div style={{ 
         display: 'grid', 
         gap: '25px', 
@@ -289,7 +283,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
                 e.currentTarget.style.borderColor = 'transparent';
               }}
             >
-              {/* Popular Badge */}
               {quizStat && quizStat.totalAttempts > 500 && (
                 <div style={{
                   position: 'absolute',
@@ -306,7 +299,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
                 </div>
               )}
 
-              {/* Quiz Header */}
               <div style={{ 
                 display: 'flex', 
                 alignItems: 'flex-start',
@@ -367,7 +359,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
                 </div>
               </div>
 
-              {/* Quiz Description */}
               <p style={{ 
                 color: '#666', 
                 marginBottom: '20px', 
@@ -377,7 +368,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
                 {quiz.description}
               </p>
 
-              {/* Stats Row */}
               {quizStat && (
                 <div style={{
                   display: 'grid',
@@ -409,7 +399,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
                 </div>
               )}
 
-              {/* Rewards Section */}
               <div style={{ marginBottom: '20px' }}>
                 <div style={{ fontSize: '14px', color: '#666', marginBottom: '8px', fontWeight: 'bold' }}>
                   🏆 Rewards:
@@ -433,7 +422,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
                 </div>
               </div>
 
-              {/* Action Button */}
               <button 
                 style={{
                   width: '100%',
@@ -463,7 +451,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
         })}
       </div>
 
-      {/* No Results Message */}
       {filteredQuizzes.length === 0 && (
         <div style={{ 
           background: 'rgba(255,255,255,0.1)', 
@@ -480,7 +467,6 @@ export default function QuizSelector({ onSelectQuiz }: { onSelectQuiz: (quizType
         </div>
       )}
 
-      {/* Privacy Notice */}
       <div style={{ 
         background: 'rgba(255,255,255,0.1)', 
         borderRadius: '10px', 
