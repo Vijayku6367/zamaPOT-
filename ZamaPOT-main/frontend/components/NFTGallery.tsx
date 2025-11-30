@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { blockchainService } from "../services/blockchain";
+
 interface NFTData {
   tokenId: number;
   metadata: any;
@@ -45,11 +46,10 @@ export default function NFTGallery({ address }: { address: string }) {
 
   const handleViewOnExplorer = async (tokenId: number) => {
     try {
-      const addr = await blockchainService.getContract();
+      const addr = blockchainService.getContractAddress();
       window.open(`https://sepolia.etherscan.io/token/${addr}?a=${tokenId}`, '_blank');
     } catch (error) {
       console.error('Error getting contract address:', error);
-      // Fallback to a default address or show error
       window.open(`https://sepolia.etherscan.io/`, '_blank');
     }
   };
@@ -168,7 +168,6 @@ export default function NFTGallery({ address }: { address: string }) {
         </div>
       )}
 
-      {/* NFT Detail Modal */}
       {selectedNft && (
         <div style={{
           position: 'fixed',
@@ -272,4 +271,4 @@ export default function NFTGallery({ address }: { address: string }) {
       )}
     </div>
   );
-                    }
+}
