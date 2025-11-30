@@ -2,7 +2,6 @@
 import { MobileFHEEncryptor } from "../utils/encryption";
 import { useState, useEffect } from 'react';
 
-// Enhanced quiz data with multiple types
 const quizData = {
   programming: [
     {
@@ -142,7 +141,6 @@ export default function Quiz({ quizType, onComplete }: QuizProps) {
 
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-      {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '30px' }}>
         <h1 style={{ color: 'white', marginBottom: '10px', fontSize: '2rem' }}>
           {quizType === 'programming' ? '💻 Programming Assessment' : 
@@ -164,7 +162,6 @@ export default function Quiz({ quizType, onComplete }: QuizProps) {
 
       {!result ? (
         <>
-          {/* Progress Bar */}
           <div style={{ 
             background: 'rgba(255,255,255,0.3)', 
             borderRadius: '10px', 
@@ -179,7 +176,6 @@ export default function Quiz({ quizType, onComplete }: QuizProps) {
             }} />
           </div>
 
-          {/* Question Card */}
           <div style={{
             background: 'white',
             borderRadius: '15px',
@@ -222,7 +218,6 @@ export default function Quiz({ quizType, onComplete }: QuizProps) {
             </div>
           </div>
 
-          {/* Navigation */}
           <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
             {currentQuestion > 0 && (
               <button 
@@ -261,7 +256,6 @@ export default function Quiz({ quizType, onComplete }: QuizProps) {
           </div>
         </>
       ) : (
-        /* Results Screen */
         <div style={{
           background: 'white',
           borderRadius: '15px',
