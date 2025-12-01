@@ -14,7 +14,7 @@ export class MobileFHEEncryptor {
    * @param length - Length of the hex string to generate
    * @returns Random hex string
    */
-  private static generateRandomHex(length: number): string {
+  public static generateRandomHex(length: number): string {
     const chars = '0123456789abcdef';
     let result = '';
     for (let i = 0; i < length; i++) {
@@ -296,7 +296,31 @@ export class MobileFHEEncryptor {
     
     return cheatingLikelihood;
   }
+
+  /**
+   * Generates a secure random token for authentication
+   * @returns Secure random token
+   */
+  static generateSecureToken(): string {
+    const randomPart1 = this.generateRandomHex(16);
+    const randomPart2 = this.generateRandomHex(16);
+    const timestamp = Date.now().toString(36);
+    return `token_${randomPart1}_${timestamp}_${randomPart2}`;
+  }
 }
+
+/**
+ * Simple utility function for generating random hex
+ * This is used by FHEUtils to avoid accessing private methods
+ */
+const generateHex = (length: number): string => {
+  const chars = '0123456789abcdef';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return result;
+};
 
 /**
  * Utility functions for FHE operations
@@ -315,7 +339,7 @@ export const FHEUtils = {
   createEncryptionContext: (sessionId: string) => ({
     sessionId,
     timestamp: Date.now(),
-    contextId: `ctx_${MobileFHEEncryptor.generateRandomHex(8)}`,
+    contextId: `ctx_${generateHex(8)}`,
     encryptionVersion: 'FHE-SIM-1.0'
   }),
 
@@ -325,6 +349,13 @@ export const FHEUtils = {
   generateEncryptedRandom: (min: number, max: number): string => {
     const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
     return MobileFHEEncryptor.encryptAnswer(randomNum);
+  },
+
+  /**
+   * Generates random hex string (public version)
+   */
+  generateRandomHex: (length: number): string => {
+    return generateHex(length);
   }
 };
 
